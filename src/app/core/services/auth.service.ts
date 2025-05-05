@@ -11,12 +11,12 @@ import { UserRole } from '../models/UserRole';
 export class AuthService {
   http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/users';
-
+  bookId?: string;
   register<T = unknown>(payload: RegisterRequest): Observable<T> {
     // Check if the email already exists
 
     const newUser: User = {
-      id: '3',
+      id: this.bookId!,
       email: payload.email,
       Fname: payload.firstName,
       Lname: payload.lastName,
