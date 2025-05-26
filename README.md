@@ -1,48 +1,84 @@
-BookstoreApp 📚
-Demo link :
-https://drive.google.com/file/d/1Fdij6y-glwDaedvc7ESuJZ6XQKQa5Nn3/view?usp=sharing
+- ✅ Angular 19 frontend  
+- ✅ Node.js + Express backend API  
+- ✅ Stripe payment integration  
+- ✅ Responsive Material UI design  
 
-*Angular 19 + Stripe E-Commerce Solution*
-Project Overview 
-A full-featured bookstore application with:
+---
 
-    Angular 19 frontend
-    
-    
-    Node js 
+## 🌟 Key Features  
 
-    Stripe payment integration
+### 📚 Book Management  
+- Browse books by category  
+- Search with filters  
+- Shopping cart system  
 
-    Responsive Material UI design
+### 💳 Secure Payments  
+- Stripe Checkout integration  
+- PCI-compliant flows  
+- Order history tracking  
 
-🌟 Key Features
-📚 Book Management
+---
 
-    Browse books by category
+## 🛠️ Tech Stack  
 
-    Search with filters
+| Layer      | Technology          |
+|------------|---------------------|
+| Frontend   | Angular 19          |
+| Backend    | Node.js / Express   |
+| Database   | MongoDB             |
+| Payments   | Stripe API          |
+| UI         | Angular Material    |
 
-    Shopping cart system
+---
 
-💳 Secure Payments
+# 🏗️ Project Architecture
 
-    Stripe Checkout integration
+The application follows a modular and scalable folder structure, with clear separation of concerns and best practices in Angular:
 
-    PCI-compliant flows
+```
+bookstore-app/
+├── src/
+│   └── app/
+│       ├── auth/                # Login, registration
+│       ├── core/                # Global services, guards, models, pipes, validators
+│       ├── dashboard/           # Main dashboard views
+│       ├── features/            # Core business features
+│       │   ├── books/           
+│       │   ├── cart/            
+│       │   ├── checkout/        
+│       │   ├── order-history/   
+│       │   ├── order-details/   
+│       │   ├── wishlist/        
+│       │   ├── home/            
+│       │   ├── success/         
+│       │   └── ...              
+│       ├── layouts/             # Header, Footer, layout wrappers
+│       ├── shared/              # Reusable components (e.g., confirm-dialog)
+│       ├── app.component.*      # Root component
+│       ├── app.config.ts        # Global configuration
+│       └── app.routes.ts        # App routing setup
+├── api/                         # Node.js backend (Express)
+│   ├── routes/
+│   │   ├── books.js             # Product endpoints
+│   │   └── payments.js          # Stripe integration
+│   └── ...
+├── database/                    # Mock data or DB setup for dev
+```
 
-    Order history tracking
+## 📐 Design Principles:
 
-🛠️ Tech Stack
-Layer	Technology
-Frontend	Angular 19
-Backend	Node.js/Express
-Database	MongoDB
-Payments	Stripe API
-UI Components	Angular Material
-⚡ Setup Guide
-1. Install Dependencies
-bash
+- **Feature-Based Modularization:** Business logic is encapsulated under `features/` (e.g., cart, books, checkout).
+- **Core Module:** Centralized single-use services, guards, and global utilities.
+- **Shared Module:** Houses reusable components and utilities used across features.
+- **Separation of Concerns:** Clear distinction between authentication, layout, core logic, and features.
+- **Routing & Configuration:** Clean routing in `app.routes.ts` and global configs in `app.config.ts`.
 
+---
+
+## ⚡ Setup Guide  
+
+### 1. Install Dependencies  
+```bash
 # Frontend
 cd bookstore-app
 npm install
@@ -50,60 +86,3 @@ npm install
 # Backend 
 cd api
 npm install
-
-2. Configure Environment
-env
-
-# .env (Backend)
-STRIPE_KEY=sk_test_xyz
-DB_URI=mongodb://localhost:27017/bookstore
-
-3. Run Development Servers
-bash
-
-# Frontend (port 4200)
-ng serve
-
-# Backend (port 3000) 
-npm start
-
-🏗️ Architecture
-
-bookstore-app/
-├── src/                   # Angular Frontend
-│   ├── app/
-│   │   ├── features/      # Book, Cart modules
-│   │   └── core/          # Services, interceptors
-│
-api/                       # Node.js Backend
-├── routes/
-│   ├── books.js           # Product routes
-│   └── payments.js        # Stripe routes
-
-💻 Code Examples
-Angular Service
-typescript
-
-@Injectable()
-export class BookService {
-  getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('/api/books');
-  }
-}
-
-Stripe Checkout
-javascript
-
-// Node.js Route
-router.post('/checkout', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    line_items: req.body.items,
-    mode: 'payment',
-    success_url: 'https://yourstore.com/success'
-  });
-  res.json({ url: session.url });
-});
-
-📜 License
-
-MIT - See LICENSE file
